@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import json, requests, sys
+import requests
+import sys
 
 def finance(symbol):
     '''
@@ -17,8 +18,13 @@ def finance(symbol):
     co = quote['name']
     price = quote['price']
     symbol = quote['symbol']
+
     print(co)
     print(symbol)
     print(price)
 
-finance(sys.argv[1])
+if len(sys.argv) == 1:
+    print("Usage: ./midas tckr1 tckr2")
+else:
+    for i in range(1, len(sys.argv)):
+        finance(sys.argv[i])
