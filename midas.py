@@ -13,15 +13,18 @@ def finance(symbol):
     '''
 
     r = requests.get('https://finance.yahoo.com/webservice/v1/symbols/'+symbol+'/quote?format=json')
-    data = r.json()
-    quote = data['list']['resources'][0]['resource']['fields']
-    co = quote['name']
-    price = quote['price']
-    symbol = quote['symbol']
+    try:
+        data = r.json()
+        quote = data['list']['resources'][0]['resource']['fields']
+        co = quote['name']
+        price = quote['price']
+        symbol = quote['symbol']
 
-    print(co)
-    print(symbol)
-    print(price)
+        print(co)
+        print(symbol)
+        print(price)
+    except:
+        print("No data found for symbol " + symbol.upper())
 
 if len(sys.argv) == 1:
     print("Usage: ./midas tckr1 tckr2")
